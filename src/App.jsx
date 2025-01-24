@@ -1,7 +1,7 @@
-import { useState } from "react";
 // IMPORTO IL GLOBAL CONTEXT
 import DefaultLayout from "./Layout/DefaultLayout";
-
+// importo il globalProvider
+import { GlobalProvider } from "./GlobalContext/GlobalContext";
 // importo il Routing
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,14 +13,16 @@ import Details from "./Pages/Details";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<DefaultLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/:id" element={<Details />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <GlobalProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<DefaultLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/:id" element={<Details />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </GlobalProvider>
   );
 }
 
