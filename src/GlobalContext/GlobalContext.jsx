@@ -1,7 +1,7 @@
 // IMPORTO AXIOS
 import axios from "axios";
 
-import { createContext, useState, useEffect, Children } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const GlobalContext = createContext();
 
@@ -13,6 +13,7 @@ const GlobalProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+    // function to get all movies
     const getData = () => {
       const finalUrl = `${url}/${endPoint}`;
       console.log(finalUrl);
@@ -26,9 +27,9 @@ const GlobalProvider = ({ children }) => {
           console.error("error fetching movies", error);
         });
     };
+
     getData();
   }, []);
-  // function to get all movies
 
   return (
     <GlobalContext.Provider value={movies}>{children}</GlobalContext.Provider>
