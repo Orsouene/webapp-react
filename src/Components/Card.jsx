@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 function Card({ movie }) {
   const Navigate = useNavigate();
@@ -6,14 +5,23 @@ function Card({ movie }) {
     Navigate(`${movie.id}`);
   };
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card  " style={{ width: "18rem", height: "530px" }}>
       <img src={movie.image} className="card-img-top" alt={movie.title} />
-      <div className="card-body">
+      <div className="card-body ">
         <h5 className="card-title">{movie.title}</h5>
         <p className="card-text">{movie.abstract}</p>
-        <Button variant="primary" onClick={handleClick}>
+        <button
+          style={{
+            padding: "7px",
+            backgroundColor: "white",
+            borderRadius: "45px",
+            color: "#4158CE",
+          }}
+          className="Btn"
+          onClick={handleClick}
+        >
           Get Details
-        </Button>
+        </button>
       </div>
     </div>
   );

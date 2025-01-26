@@ -1,16 +1,24 @@
+//  Importo gli hook useEffect, useState da React per la gestione degli effetti collaterali e dello stato.
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Button } from "react-bootstrap";
+// Importo i metodi useParams per ottenere i parametri dell'URL e useNavigate per navigare tra le pagine.
+import { useParams, useNavigate } from "react-router-dom";
+// Importo la libreria axios per effettuare richieste HTTP
 import axios from "axios";
 
 export default function Details() {
   // Dichiaro il mio URL
+
   const url = import.meta.env.VITE_API_URL;
   const endPoint = "movies";
-  const [MovieDetails, setMovieDetails] = useState(null);
+  // useParams per ottenere l'ID del film dalla URL
   const { id } = useParams();
+  // useState per dichiarare una variabile di stato che conterrà il film richiesto con il suo ID
+  const [MovieDetails, setMovieDetails] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getDataDetails = () => {
+      // Eseguo una richiesta GET all'API con l'ID del film.
       axios
         .get(`${url}/${endPoint}/${id}`)
         .then((res) => {
@@ -19,18 +27,20 @@ export default function Details() {
         })
         .catch((err) => {
           console.log("film details not found", err);
+          navigate("/NotFound");
         });
     };
+    // Chiamo la funzione per recuperare i dettagli del film
     getDataDetails();
   }, [id]);
 
   return (
     <section className="d-flex g-5 wrapper">
       {MovieDetails && (
-        <div className="card" style={{ width: "18rem" }}>
+        <div className=" card CardDetails">
           <img
             src={MovieDetails.image}
-            className="card-img-top"
+            className="card-img-top imgDetails"
             alt={MovieDetails.title}
           />
           <div className="card-body">
@@ -39,9 +49,42 @@ export default function Details() {
             <div className="card-text">
               {MovieDetails.reviews.map((review) => (
                 <div key={review.id}>
-                  <p>User : {review.name}</p>
-                  <p> Comment : {review.text} </p>
-                  <p> Vote : {review.vote} </p>
+                  <p
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                  >
+                    <strong className="badge" style={{ fontSize: "1rem" }}>
+                      User :
+                    </strong>
+                    {review.name}
+                  </p>
+                  <p
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                  >
+                    <strong className="badge" style={{ fontSize: "1rem" }}>
+                      Comment :{" "}
+                    </strong>
+                    {review.text}
+                  </p>
+                  <p
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                  >
+                    <strong className="badge" style={{ fontSize: "1rem" }}>
+                      Vote :
+                    </strong>
+                    {review.vote}
+                  </p>
                 </div>
               ))}
             </div>
