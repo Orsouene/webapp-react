@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // Importo la libreria axios per effettuare richieste HTTP
 import axios from "axios";
+// il componente HomePage che mostra la lista dei film.
+import AddReview from "./addReview";
 
 export default function Details() {
   // Dichiaro il mio URL
@@ -91,6 +93,7 @@ export default function Details() {
           </div>
         </div>
       )}
+      <AddReview Movie_id={MovieDetails?.id} />
     </section>
   );
 }

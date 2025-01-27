@@ -11,9 +11,9 @@ import "./index.css";
 // IMPORTO LA PAGINA HOME
 import HomePage from "./Pages/HomePage";
 // IMPORTO LA PAGINA DETAILS
-import Details from "./Pages/Details";
+import Details from "./Pages/MovieDetails";
 // IMPORTO IL NOT-FOUND PAGE
-import NotFoundTV from "./Pages/notFound";
+import NotFoundTV from "./Pages/NotFound";
 // IMPORTO I LLOADER
 import Loader from "./Components/Loader";
 
