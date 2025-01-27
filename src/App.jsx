@@ -1,5 +1,7 @@
 // IMPORTO IL GLOBAL CONTEXT
 import DefaultLayout from "./Layout/DefaultLayout";
+// importo useState,useEffect
+import { useState, useEffect } from "react";
 // importo il globalProvider
 import { GlobalProvider } from "./GlobalContext/GlobalContext";
 // importo il Routing
@@ -12,20 +14,36 @@ import HomePage from "./Pages/HomePage";
 import Details from "./Pages/Details";
 // IMPORTO IL NOT-FOUND PAGE
 import NotFoundTV from "./Pages/notFound";
+// IMPORTO I LLOADER
+import Loader from "./Components/Loader";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   return (
-    <GlobalProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/:id" element={<Details />} />
-            <Route path="/NotFound" element={<NotFoundTV />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </GlobalProvider>
+    <div>
+      {/* if false mi fa partire il loader  */}
+      {/* if true mi renderizza le pagine  */}
+      {loading ? (
+        <Loader />
+      ) : (
+        <GlobalProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<DefaultLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="/:id" element={<Details />} />
+                <Route path="/NotFound" element={<NotFoundTV />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </GlobalProvider>
+      )}
+    </div>
   );
 }
 
