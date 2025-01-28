@@ -18,21 +18,21 @@ export default function Details() {
   const [MovieDetails, setMovieDetails] = useState(null);
   const navigate = useNavigate();
 
+  const getDataDetails = () => {
+    // Eseguo una richiesta GET all'API con l'ID del film.
+    axios
+      .get(`${url}/${endPoint}/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setMovieDetails(res.data);
+      })
+      .catch((err) => {
+        console.log("film details not found", err);
+        navigate("/NotFound");
+      });
+  };
+
   useEffect(() => {
-    const getDataDetails = () => {
-      // Eseguo una richiesta GET all'API con l'ID del film.
-      axios
-        .get(`${url}/${endPoint}/${id}`)
-        .then((res) => {
-          console.log(res.data);
-          setMovieDetails(res.data);
-        })
-        .catch((err) => {
-          console.log("film details not found", err);
-          navigate("/NotFound");
-        });
-    };
-    // Chiamo la funzione per recuperare i dettagli del film
     getDataDetails();
   }, [id]);
 
@@ -93,7 +93,7 @@ export default function Details() {
           </div>
         </div>
       )}
-      <AddReview Movie_id={MovieDetails?.id} />
+      <AddReview Movie_id={MovieDetails?.id} reloadReview={getDataDetails} />
     </section>
   );
 }

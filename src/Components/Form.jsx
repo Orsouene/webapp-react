@@ -18,12 +18,12 @@ export default function Form({ handleSubmit, setFieldValue, formData }) {
       />
       <textarea
         className="form-control"
-        id="review"
+        id="text"
         rows="3"
-        name="review"
+        name="text"
         placeholder="Place your Name.."
         type="text"
-        value={formData.review}
+        value={formData.text}
         onChange={setFieldValue}
       />
       <input
