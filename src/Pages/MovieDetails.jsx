@@ -31,7 +31,7 @@ export default function Details() {
         navigate("/NotFound");
       });
   };
-
+  // Chiamo la funzione per recuperare i dettagli del film
   useEffect(() => {
     getDataDetails();
   }, [id]);
