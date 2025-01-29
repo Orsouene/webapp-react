@@ -11,6 +11,7 @@ const endPoint = "movies";
 const GlobalProvider = ({ children }) => {
   //  una variabile di stato che conterrà la lista dei film.
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // function to get all movies
@@ -22,18 +23,23 @@ const GlobalProvider = ({ children }) => {
         .get(finalUrl)
         .then((res) => {
           setMovies(res.data);
+          setLoading(false);
           console.log(res.data);
         })
         .catch((error) => {
           console.error("error fetching movies", error);
+          setLoading(false);
         });
     };
 
     getData();
   }, []);
+
   // i dati dei film disponibili a tutti i componenti figli tramite il GlobalContext.
   return (
-    <GlobalContext.Provider value={movies}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={{ movies, loading, setLoading }}>
+      {children}
+    </GlobalContext.Provider>
   );
 };
 

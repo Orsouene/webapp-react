@@ -7,7 +7,7 @@ import Card from "../Components/Card";
 
 export default function HomePage() {
   // useContext per ottenere i dati dei film dal GlobalContext.
-  const movies = useContext(GlobalContext);
+  const { movies } = useContext(GlobalContext);
   return (
     <>
       <section className="d-flex g-5 wrapper">

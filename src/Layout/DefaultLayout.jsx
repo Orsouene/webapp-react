@@ -1,14 +1,24 @@
+import { useContext } from "react";
+import { GlobalContext } from "../GlobalContext/GlobalContext";
 import { Outlet } from "react-router-dom";
-// Importo il Header
 import Header from "../Components/Header";
-// Importo il footer
 import Footer from "../Components/Footer";
+import Loader from "../Components/Loader";
+
 export default function DefaultLayout() {
+  const { loading } = useContext(GlobalContext);
+
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      )}
     </>
   );
 }
