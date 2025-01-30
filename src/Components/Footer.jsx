@@ -4,7 +4,7 @@ import { MDBFooter, MDBContainer, MDBIcon, MDBBtn } from "mdb-react-ui-kit";
 
 export default function Footer() {
   return (
-    <MDBFooter className="bg-light text-center text-white">
+    <MDBFooter className=" myFooter text-center text-white">
       <MDBContainer className="p-4 pb-0">
         <section className="mb-4">
           {/* FACEBOOK-ICON */}

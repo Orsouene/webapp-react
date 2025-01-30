@@ -12,32 +12,51 @@ const GlobalProvider = ({ children }) => {
   //  una variabile di stato che conterrà la lista dei film.
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [numPage, setNumPage] = useState(0);
+  const [page, setPage] = useState(1);
+
+  // axios per fare una richiesta GET all'API
+
+  function getData() {
+    // axios per fare una richiesta GET all'API
+    axios
+      .get(`${url}/${endPoint}`, { params: { page } })
+      .then((res) => {
+        setNumPage(Math.ceil(res.data.count / 4)); // Cambia 2 con 4
+        setMovies(res.data.items);
+        setLoading(false);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(
+          "Error fetching movies:",
+          error.response ? error.response.data : error.message
+        );
+        setLoading(false);
+      });
+  }
 
   useEffect(() => {
     // function to get all movies
-    const getData = () => {
-      const finalUrl = `${url}/${endPoint}`;
-      console.log(finalUrl);
-      // axios per fare una richiesta GET all'API
-      axios
-        .get(finalUrl)
-        .then((res) => {
-          setMovies(res.data);
-          setLoading(false);
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.error("error fetching movies", error);
-          setLoading(false);
-        });
-    };
-
     getData();
-  }, []);
+  }, [page]);
+  //Dipendenza da `page`
+  function handleclick(numPage) {
+    // Aggiusta i limiti delle pagine
+    if (numPage < 1) {
+      setPage(1); // Torna alla prima pagina se numPage è inferiore a 1
+    } else if (numPage > numPage) {
+      setPage(numPage); // Limita la pagina alla massima disponibile
+    } else {
+      setPage(numPage); // Imposta la pagina normalmente
+    }
+  }
 
   // i dati dei film disponibili a tutti i componenti figli tramite il GlobalContext.
   return (
-    <GlobalContext.Provider value={{ movies, loading, setLoading }}>
+    <GlobalContext.Provider
+      value={{ movies, loading, setLoading, page, numPage, handleclick }}
+    >
       {children}
     </GlobalContext.Provider>
   );

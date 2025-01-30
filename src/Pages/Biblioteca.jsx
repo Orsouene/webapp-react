@@ -4,10 +4,13 @@ import { GlobalContext } from "../GlobalContext/GlobalContext";
 import { useContext } from "react";
 // Importo il file del Card
 import Card from "../Components/Card";
+// importo il pager
+import Pager from "../Components/pager";
 
 export default function Biblioteca() {
   // useContext per ottenere i dati dei film dal GlobalContext.
-  const { movies } = useContext(GlobalContext);
+  const { movies, page, numPage, handleclick } = useContext(GlobalContext);
+
   return (
     <>
       <section className="d-flex g-5 wrapper">
@@ -20,6 +23,11 @@ export default function Biblioteca() {
         ) : (
           <p> no movies found</p>
         )}
+        <Pager
+          page={page}
+          numPage={numPage}
+          onChangePage={(numPage) => handleclick(numPage)}
+        />
       </section>
     </>
   );

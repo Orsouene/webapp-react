@@ -41,7 +41,7 @@ export default function Details() {
       {MovieDetails && (
         <div className=" card CardDetails">
           <img
-            src={MovieDetails.image}
+            src={`${url}/${MovieDetails.image}`}
             className="card-img-top imgDetails"
             alt={MovieDetails.title}
           />
