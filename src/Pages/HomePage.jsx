@@ -1,26 +1,94 @@
-// Importo il contesto GlobalContext per accedere ai dati condivisi a livello globale
-import { GlobalContext } from "../GlobalContext/GlobalContext";
-// Importo useContext per ottenere i dati dal GlobalContext.
-import { useContext } from "react";
-// Importo il file del Card
-import Card from "../Components/Card";
-
 export default function HomePage() {
-  // useContext per ottenere i dati dei film dal GlobalContext.
-  const { movies } = useContext(GlobalContext);
   return (
     <>
-      <section className="d-flex g-5 wrapper">
-        {movies && movies.length > 0 ? (
-          movies.map((movie) => (
-            <div key={movie.id}>
-              <Card movie={movie} />
-            </div>
-          ))
-        ) : (
-          <p> no movies found</p>
-        )}
-      </section>
+      <div className="Homepage-wrapper">
+        <div className="inner" style={{ "--quantity": 10 }}>
+          <div className="Homepage-card" style={{ "--index": 3 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/Avatar.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 4 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/BladeRunner.webp"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 5 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/DarkKnight.webp"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 6 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/inception.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 7 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/interstellar.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 8 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/IronMan.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 9 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/matrix.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 10 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/the_godfather.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 11 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/TheBrutalist.webp"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 12 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/titanic.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 13 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/TopGun.jpg"
+              alt=""
+            />
+          </div>
+          <div className="Homepage-card" style={{ "--index": 14 }}>
+            <img
+              style={{ width: "200px", height: "250px" }}
+              src="/images/TrueMan.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

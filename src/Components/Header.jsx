@@ -6,7 +6,16 @@ export default function Header() {
       <ul className="nav d-flex justify-content-center gap-5  ">
         <li>
           <NavLink to="/" className="headerNavLink major-mono-display-regular">
-            Home Page
+            Home-Page
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink
+            to="/movies"
+            className="headerNavLink major-mono-display-regular"
+          >
+            Biblioteca
           </NavLink>
         </li>
       </ul>

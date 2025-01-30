@@ -49,6 +49,8 @@ export default function Details() {
             <h5 className="card-title">{MovieDetails.title}</h5>
             <p className="card-text">{MovieDetails.abstract}</p>
             <div className="card-text">
+              <h5 className="card-title">Users' Reviews :</h5>
+
               {MovieDetails.reviews.map((review) => (
                 <div key={review.id}>
                   <p

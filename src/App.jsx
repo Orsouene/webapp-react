@@ -8,12 +8,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // CSS FILE
 import "./index.css";
 // IMPORTO LA PAGINA HOME
-import HomePage from "./Pages/HomePage";
+import Biblioteca from "./Pages/biblioteca";
 // IMPORTO LA PAGINA DETAILS
 import Details from "./Pages/MovieDetails";
 // IMPORTO IL NOT-FOUND PAGE
 import NotFoundTV from "./Pages/NotFound";
-// IMPORTO I LLOADER
+// IMPORTO I home page
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route index element={<HomePage />} />
+            <Route path="/movies" element={<Biblioteca />} />
             <Route path="/:id" element={<Details />} />
             <Route path="/NotFound" element={<NotFoundTV />} />
           </Route>
